@@ -11,17 +11,16 @@ def process():
     print(f'ini {argv[1]}: ', end='')
     try:
         Input, Output = loading.load_ini(argv[1])
-    except Exception as e:
-        print(e)
+    except Exception:
         print('***** program aborted *****')
         return None
     print('OK')
 
     print(f'input-csv {Input["csv"]}: ', end='')
+    info = loading.load_info(Input)
     try:
         info = loading.load_info(Input)
-    except Exception as e:
-        print(e)
+    except Exception:
         print('***** program aborted *****')
         return None
     print('OK')
@@ -29,8 +28,7 @@ def process():
     print(f'input-json {Input["json"]}: ', end='')
     try:
         json_loading = loading.load_json(Input)
-    except Exception as e:
-        print(e)
+    except Exception:
         print('***** program aborted *****')
         return None
     print('OK')
@@ -42,11 +40,13 @@ def process():
         print('UPS')
 
     print(f'output {Output["fname"]}: ', end='')
+    loading.search(info, Output)
     try:
-        loading.search(info)
-    except Exception as e:
-        print(e)
+        loading.search(info, Output)
+    except Exception:
         print('***** program aborted *****')
+        return None
+    print('OK')
 
 
 if __name__ == '__main__':
