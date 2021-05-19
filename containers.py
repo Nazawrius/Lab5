@@ -6,7 +6,7 @@ class Try:
         if 0 <= int(percent) <= 100:
             self._percent = int(percent)
         else:
-            raise Exception(10)
+            raise Exception
 
     @property
     def student(self):
@@ -24,8 +24,9 @@ class Try:
     def percent(self):
         return self._percent
 
-    def __repr__(self):
-        return f'{self.date.year}\t{self.date.month}\t{self.percent}\t{str(self.student)}\t'
+    def to_str(self):
+        return (str(self.date.year) + '\t' + str(self.date.month) + '\t' +
+                str(self.percent) + '\t' + self.student.to_str())
 
 
 class Student:
@@ -35,17 +36,17 @@ class Student:
            last_name.strip() == last_name:
             self._last_name = last_name
         else:
-            raise Exception(102)
+            raise Exception
         if len(first_name) <= 28 and all((ch in names_chars for ch in first_name)) and \
            first_name.strip() == first_name:
             self._first_name = first_name
         else:
-            raise Exception(12323)
+            raise Exception
         if len(father) <= 27 and all((ch in names_chars for ch in father)) and \
            father.strip() == father:
             self._father = father
         else:
-            raise Exception(121)
+            raise Exception
 
     @property
     def last_name(self):
@@ -59,24 +60,24 @@ class Student:
     def father(self):
         return self._father
 
-    def __repr__(self):
-        return f'{self.last_name}\t{self.first_name}\t{self.father}'
+    def to_str(self):
+        return self.last_name + '\t' + self.first_name + '\t' + self.father
 
 
 class Date:
     def __init__(self, year, month, day):
-        if 2000 <= int(year) <= 2021 and len(year) == 4:
+        if 2000 <= int(year) <= 9999 and len(year) == 4:
             self._year = int(year)
         else:
-            raise Exception(12)
+            raise Exception
         if 1 <= int(month) <= 12 and len(month) <= 2:
             self._month = int(month)
         else:
-            raise Exception(1231)
+            raise Exception
         if 1 <= int(day) <= 31 and len(day) <= 2:
             self._day = int(day)
         else:
-            raise Exception(434)
+            raise Exception
 
     @property
     def year(self):

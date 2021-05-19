@@ -1,3 +1,4 @@
-description	1	2
-	2002	12	100	last	name	fath	
-	2002	12	80	last	name	fath	
+droptable	3	3
+	2007	1	100	irfjrij	jfj	wfwieue
+	2007	1	100	irfjrij	jfj	wfwieue
+	2007	1	100	irfjrij	jfj	wfwieue

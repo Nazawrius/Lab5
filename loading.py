@@ -57,4 +57,4 @@ def search(info, Output):
                     tries.append(try_)
             tries.sort(key=key)
             for try_ in tries:
-                f.write(f'\t{str(try_)}\n')
+                f.write(f'\t{try_.to_str()}\n')
