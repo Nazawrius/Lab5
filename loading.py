@@ -1,12 +1,6 @@
 import csv
 import json
-
-
-def load_ini(path_ini):
-    open_ini = open(path_ini)
-    ini_file =import csv
-import json
-
+from Info import Info
 
 def load_ini(path_ini):
     open_ini = open(path_ini)
@@ -15,20 +9,27 @@ def load_ini(path_ini):
         raise Exception('UPS')
     Input = ini_file['input']
     Output = ini_file['output']
-    if 'json' not in Input or 'csv' not in Input or 'encoding' not in Input or 'fname' not in Output or \
-            'encoding' not in Output:
+    if 'json' not in Input or 'csv' not in Input or \
+       'encoding' not in Input or 'fname' not in Output or \
+       'encoding' not in Output:
         raise Exception('UPS')
     return Input, Output
 
-
-"""def load_stat(Input):
+def load_json(Input):
     with open(Input['json'], encoding=Input['encoding']) as f:
-        load_json = json.load(f)
-        return load_json
+        Json = json.load(f)
+        return Json
 
-"""
+def load_info(Input):
+    with open(Input['csv'], encoding=Input['encoding']) as f:
+        Csv = csv.reader(f, delimiter=';')
+        info = Info(Csv)
+        return info
 
+def fit(info, json_loading):
+    problem_number = json_loading["кількість різних задач"] == len(info.problems)
+    entries_number = json_loading["кількість записів"] == info.entries
+    return problem_number and entries_number
 
-def load_stat(filename, encoding):
-    with open(filename, encoding=encoding) as json_file:
-        return json.load(json_file)
+def search(info):
+    ...
